@@ -1,0 +1,76 @@
+{% extends 'blog/abstract/base.html' %}
+
+{% block body %}
+<style>
+
+    .custom-file-input::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+      .custom-file-input::before {
+        content: 'Upload Image';
+        display: inline-block;
+        background: linear-gradient(top, #f9f9f9, #e3e3e3);
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 5px 8px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-weight: 700;
+        font-size: 10pt;
+      }
+      .custom-file-input:hover::before {
+        border-color: black;
+      }
+      .custom-file-input:active::before {
+        background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+      }
+</style>
+<section id="content-wrap" class="blog-single">
+    <div class="row">
+        <div class="col-twelve">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                  
+                  <fieldset>
+              
+                    <div class="form-field">
+                        <label for="sampleRecipientInput">Title</label>
+
+                        <input name="title" type="text" required id="id_title" class="full-width" placeholder="Title" value="">
+                    </div>
+                    <div>
+                        <label for="sampleRecipientInput">Category</label>
+                        <div class="ss-custom-select">
+                            <select name="category" class="full-width" id="sampleRecipientInput">
+                                <option value="wordpress">Wordpress</option>
+                                <option value="Option">HTML</option>
+                                <option value="photography">Photography</option>
+                                <option value="mockups">Mockups</option>
+                                <option value="branding">Branding</option>
+                                <option value="ui">UI</option>
+                            </select>
+                        </div>			         	
+                    </div>
+                    <div class="message form-field">
+                       <textarea name="content" id="content" class="full-width" placeholder="Article" ></textarea>
+                    </div>
+                    <div >
+                        <input class="custom-file-input" id="files" type="file" name="image" accept="image/*" >
+                    </div>
+
+                    <button type="submit" class="submit button-primary">Submit</button>
+              
+                  </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% include "blog/abstract/footer.html" %}
+
+{% endblock body %}
+

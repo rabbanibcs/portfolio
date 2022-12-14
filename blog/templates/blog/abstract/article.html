@@ -1,0 +1,43 @@
+{% load static %}
+{% if posts %}
+{% for post in posts %}
+
+
+<article class="brick entry format-standard animate-this">
+
+    <div class="entry-thumb">
+       <a href="{% url 'post-detail' post.pk %}" class="thumb-link">
+           <img src={{post.image.url}} alt="building">             
+       </a>
+    </div>
+
+    <div class="entry-text">
+        <div class="entry-header">
+
+            <div class="entry-meta">
+                <span class="cat-links">
+                    <a href="#">Category</a> 
+                    <a href="#">{{post.get_category}}</a>               				
+                </span>			
+            </div>
+
+            <h1 class="entry-title"><a href={% url 'post-detail' post.pk %}>{{post.title}}</a></h1>
+            
+        </div>
+             <div class="entry-excerpt">
+                {{post.content|truncatewords:30}}
+                </div>
+    </div>
+
+</article> <!-- end article -->
+
+{% endfor %}
+
+{% else %}
+<div class="bricks-wrapper">
+
+    <h1 class="entry-title"
+    style="text-align: center;"
+    >Nothing is found</h1>
+</div>
+{% endif %}

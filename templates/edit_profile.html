@@ -1,0 +1,98 @@
+{% extends 'blog/abstract/base.html' %}
+{% block title %}
+<title>Edit Profile</title>
+
+{% endblock title %}
+{% block body %}
+<style>
+    .img {
+      width:150px;
+      height:150px;
+      border-radius: 50%;
+    }
+    .custom-file-input::-webkit-file-upload-button {
+        visibility: hidden;
+      }
+      .custom-file-input::before {
+        content: 'Upload Image';
+        display: inline-block;
+        background: linear-gradient(top, #f9f9f9, #e3e3e3);
+        border: 1px solid #999;
+        border-radius: 3px;
+        padding: 5px 8px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-weight: 700;
+        font-size: 10pt;
+      }
+      .custom-file-input:hover::before {
+        border-color: black;
+      }
+      .custom-file-input:active::before {
+        background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+      }
+</style>
+<section id="content-wrap" class="blog-single">
+    <div class="row">
+        <div class="col-twelve">
+            <img class="img" src="{% if request.user.image %}{{request.user.image.url}}{% endif %}">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                  
+                  <fieldset>
+              
+                    <div class="form-field">
+                        <label for="sampleRecipientInput">First Name:</label>
+
+                        <input name="fname" type="text" required id="id_title" class="full-width" placeholder="first name" value="{{request.user.first_name}}">
+                    </div>
+                    <div class="form-field">
+                      <label for="sampleRecipientInput">Last Name:</label>
+
+                      <input name="lname" type="text" required id="id_title" class="full-width" placeholder="last name" value="{{request.user.last_name}}">
+                  </div>
+                  <div class="form-field">
+                    <label for="sampleRecipientInput">Email:</label>
+
+                    <input name="email" type="text" required id="id_title" class="full-width" placeholder="Title" value="{{request.user.email}}">
+                  </div>
+                    <div>
+                        <label for="sampleRecipientInput">Gender:</label>
+                        <div class="ss-custom-select">
+                            <select name="gender" class="full-width" id="sampleRecipientInput">
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                                
+                            </select>
+                        </div>			         	
+                    </div>
+                    <div class="message form-field">
+                      <label for="sampleRecipientInput">About:</label>
+
+                       <textarea name="about" id="content" class="full-width" placeholder="About Yourself..." value="{{request.user.about}}">{{request.user.about}}</textarea>
+                    </div>
+                    <div >
+                        <label class="required" for="id_image">Image:</label>
+                        <p class="file-upload">Currently: 
+                          <a href="
+                          {% if request.user.image %}{{request.user.image.url}}{% endif %}
+                          ">{% if request.user.image %}{{request.user.image.path}}{% endif %}</a><br>
+
+                        <input class="custom-file-input" id="files" type="file" name="image" accept="image/*" >
+                    </div>
+
+                    <button type="submit" class="submit button-primary">Submit</button>
+              
+                  </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% include "blog/abstract/footer.html" %}
+
+{% endblock body %}
+

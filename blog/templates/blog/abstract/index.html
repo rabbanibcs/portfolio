@@ -1,0 +1,39 @@
+{% extends 'blog/abstract/base.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+
+{% endblock title %}
+{% block body %}
+
+
+      <!-- masonry
+      ================================================== -->
+      <section id="bricks">
+
+         <div class="row masonry">
+
+            <!-- brick-wrapper -->
+            <div class="bricks-wrapper">
+
+               <div class="grid-sizer"></div>
+
+            {% include 'blog/abstract/slide-show.html' %}
+
+            {% include "blog/abstract/article.html" %}
+
+         </div> <!-- end brick-wrapper --> 
+         </div> <!-- end row -->
+
+      <!--pagination-->
+         {% include "blog/abstract/pagination.html" %}
+
+      </section> <!-- end bricks -->
+
+      
+      <!-- footer
+      ================================================== -->
+      {% include "blog/abstract/footer.html" %}
+ 
+
+{% endblock body %}

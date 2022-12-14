@@ -1,0 +1,37 @@
+{% load static %}
+<ol class="commentlist" >
+
+{% for comment in post.comment_set.all %}
+
+   <li class="depth-1">
+
+      <div class="avatar">
+         <img width="50" height="50" class="avatar" src={% static "abstract/images/avatars/user-02.jpg" %} alt="">
+      </div>
+
+      <div class="comment-content">
+
+         <div class="comment-info">
+            <cite>{{comment.author_name}}</cite>
+
+            <div class="comment-meta">
+               <time class="comment-time" datetime="2014-07-12T25:15">{{comment.created_at.date}} @ {{comment.created_at.time}}</time>
+               {% comment %} <span class="sep">/</span><a class="reply" href="#">Reply</a> {% endcomment %}
+            </div>
+         </div>
+
+         <div class="comment-text">
+            <p>{{comment.content}}</p>
+         </div>
+
+      </div>
+
+   </li>
+   
+{% endfor %}
+
+
+
+ </ol> <!-- Commentlist End -->					
+
+

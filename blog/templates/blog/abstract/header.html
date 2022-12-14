@@ -1,0 +1,92 @@
+{% load static %}
+<header class="short-header">   
+
+    <div class="gradient-block"></div>	
+
+    <div class="row header-content">
+
+        <nav id="main-nav-wrap">
+             <ul class="main-navigation sf-menu">
+                 <li 
+                 {% if home %}class="current"{% endif %}
+                 ><a href={% url 'post-index' %} title="">Home</a></li>									
+                 <li class="has-children
+                 {% if category %}current{% endif %}
+                 ">
+                     <a href="{% url 'category-view' 'wordpress' %}" title="">Categories</a>
+                     <ul class="sub-menu">
+                     <li><a href="{% url 'category-view' 'wordpress' %}">Wordpress</a></li>
+                     <li><a href="{% url 'category-view' 'html' %}">HTML</a></li>
+                     <li><a href="{% url 'category-view' 'photography' %}">Photography</a></li>
+                     <li><a href="{% url 'category-view' 'ui' %}">UI</a></li>
+                     <li><a href="{% url 'category-view' 'mockups' %}">Mockups</a></li>
+                     <li><a href="{% url 'category-view' 'branding' %}">Branding</a></li>
+                  </ul>
+                 </li>
+                 
+{% comment %}                  
+                 <li><a href="style-guide.html" title="">Styles</a></li>
+                 <li><a href="about.html" title="">About</a></li>
+                  {% endcomment %}
+                {% if user.is_authenticated %}
+                <li class="has-children {% if page_name %}current{% endif %}
+                "">
+                    <a href="{% url 'edit-profile' %}" title="">Profile</a>
+                     <ul class="sub-menu">
+                     <li><a href="{% url 'edit-profile' %}">Edit Profile</a></li>
+                     <li><a href="{% url 'post-create' %}">Create Post</a></li>
+                     <li><a href="{% url 'liked-posts'%}">Liked Posts</a></li>
+                     <li><a href="{% url 'own-posts' %}">Own Posts</a></li>
+                     <li><a href="{% url 'signout' %}">SignOut</a></li>
+                    </ul>
+                 </li>										
+                {% else %}
+                <li class="{% if page_name %}current{% endif %}"><a href={% url 'signin' %} title="">SignIn</a></li>										
+                {% endif %}
+
+
+             </ul>
+
+
+        </nav> <!-- end main-nav-wrap -->
+
+         <div class="search-wrap">
+             
+             <form role="search" method="get" class="search-form" action={% url 'search' %}>
+                 <label>
+                     <span class="hide-content">Search for:</span>
+                     <input type="search" class="search-field" placeholder="Type Your Keywords"  name="words" title="Search for:" autocomplete="off">
+                 </label>
+                 <input type="submit" class="search-submit" value="Search">
+             </form>
+
+             <a href="#" id="close-search" class="close-btn">Close</a>
+
+         </div> <!-- end search wrap -->	
+
+         <div class="triggers">
+             <a class="search-trigger" href="#"><i class="fa fa-search"></i></a>
+             <a class="menu-toggle" href="#"><span>Menu</span></a>
+         </div> <!-- end triggers -->	
+        
+    </div>     		
+    
+</header> <!-- end header -->
+
+
+<!-- 
+<img width="70" height="70"  src={% static "abstract/images/avatars/user-02.jpg" %} alt="">
+<li class="has-children">
+    <a href="single-standard.html" title="">Blog</a>
+    <ul class="sub-menu">
+    <li><a href="{% url 'post-create' %}">Create</a></li>
+    <li><a href="single-audio.html">Audio Post</a></li>
+    <li><a href="single-gallery.html">Gallery Post</a></li>
+    <li><a href="single-standard.html">Standard Post</a></li>
+    </ul>
+</li>
+
+
+
+-->	
+

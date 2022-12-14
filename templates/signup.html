@@ -1,0 +1,53 @@
+{% extends 'blog/abstract/base.html' %}
+{% load static %}
+{% block title %}
+<title>SignUp</title>
+
+{% endblock title %}
+{% block body %}
+
+<section id="content-wrap" class="blog-single">
+    <div class="row">
+        <div class="col-seven" >
+            {% if message %}
+
+            <div class="alert-box ss-notice hideit">
+		        <p>{{ message }}</p>
+		        <i class="fa fa-times close"></i>
+		      </div><!-- /notice -->
+                
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                  
+                  <fieldset>
+              
+                    <div class="form-field">
+                        <label for="sampleRecipientInput">Email:</label>
+
+                        <input name="email" type="text" required id="id_title" class="full-width" placeholder="Email..." value="">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="sampleRecipientInput">Password:</label>
+
+                        <input type="password" name="password" type="text" required id="id_title" class="full-width" placeholder="Password..." value="">
+                    </div>
+                    <div class="form-field">
+                        <label for="sampleRecipientInput">Password(again):</label>
+
+                        <input type="password" name="password_" type="text" required id="id_title" class="full-width" placeholder="Password..." value="">
+                    </div>
+
+                    <button type="submit" class="submit button-primary">Sign Up</button>
+              
+                  </fieldset>
+            </form>
+
+        </div>
+    </div>
+</section>
+  
+
+{% endblock body %}

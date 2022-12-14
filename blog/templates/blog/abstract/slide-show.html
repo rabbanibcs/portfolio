@@ -1,0 +1,32 @@
+{% load static %}
+<div class="brick entry featured-grid animate-this">
+    <div class="entry-content">
+        <div id="featured-post-slider" class="flexslider">
+                <ul class="slides">
+    
+    {% for post in posts %}         
+    <li>
+        <div class="featured-post-slide">
+
+            <div class="post-background" style="background-image:url({{post.image.url}});;"></div>
+
+            <div class="overlay"></div>			   		
+
+            <div class="post-content">
+                <ul class="entry-meta">
+                    <li>{{post.date_posted}}</li>
+                    <li><a href="#" class="author">{{post.author.get_full_name}}</a></li>					
+                    {% comment %} <li><a href="#" class="author">Naruto Uzumaki</a></li>					 {% endcomment %}
+                </ul>	
+
+                <h1 class="slide-title"><a href={% url 'post-detail' post.pk %} title="">{{post.title}}</a></h1>
+            </div>
+
+        </div>
+    </li> <!-- end slide -->
+    {% endfor %}
+
+                </ul> <!-- end slides -->
+            </div> <!-- end featured-post-slider -->        			
+    </div> <!-- end entry content -->         		
+</div>

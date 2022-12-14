@@ -1,0 +1,55 @@
+{% extends 'blog/abstract/base.html' %}
+{% load static %}
+{% block title %}
+<title>
+   {% if category %}
+   {{category}}
+   {% else %}
+   {{page_name}}
+   {% endif %}
+
+
+</title>
+
+{% endblock title %}
+{% block body %}
+
+
+   <!-- page header
+   ================================================== -->
+   <section id="page-header">
+   	<div class="row current-cat">
+         {% if category %}
+            <div class="col-full">
+               <h1>Category: {{category}}</h1>
+            </div>
+         {% endif %}
+   		   		
+   	</div>
+   </section>
+
+   
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks" class="with-top-sep">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+            {% include "blog/abstract/article.html" %}
+
+         </div> <!-- end brick-wrapper --> 
+
+   	</div> <!-- end row -->
+
+
+   </section> <!-- bricks -->
+
+   
+      
+	<!-- footer
+	================================================== -->
+   {% endblock body %}

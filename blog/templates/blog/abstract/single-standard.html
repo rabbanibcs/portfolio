@@ -1,0 +1,132 @@
+{% extends 'blog/abstract/base.html' %}
+{% load static %}
+{% block title %}
+<title>{{post.title}}</title>
+
+{% endblock title %}
+
+{% block body %}
+	<style>
+
+		.like {
+			display: flex;
+  			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+			font-size: 30px;
+			font-weight: bold;
+			font-family: 'Times New Roman', Times, serif;
+		}
+	</style>
+   <!-- content
+   ================================================== -->
+   <section id="content-wrap" class="blog-single">
+   	<div class="row">
+   		<div class="col-twelve">
+
+   			<article class="format-standard">  
+
+   				<div class="content-media">
+						<div class="post-thumb">
+							<img src={{post.image.url}}/> 
+						</div>  
+					</div>
+
+					<div class="primary-content">
+
+						<h1 class="page-title">{{post.title}}</h1>	
+
+						<ul class="entry-meta">
+							<li class="date">September 06, 2016</li>						
+							<li class="cat"><a href="">Wordpress</a><a href="">Design</a></li>				
+						</ul>						
+
+						<p class="lead">
+							
+							{{post.content}}
+						</p> 
+
+
+						<h2>Large Heading</h2>
+						{% lorem 3 p %}
+
+						<blockquote><p>This is a simple example of a styled blockquote. A blockquote tag typically specifies a section that is quoted from another source of some sort, or highlighting text in your post.</p></blockquote>
+
+						<p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed..</p>
+
+						<h3>Smaller Heading</h3>
+						{% lorem 3 p %}
+
+
+
+						<p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+
+						<ul>
+							<li>Donec nulla non metus auctor fringilla.
+								<ul>
+									<li>Lorem ipsum dolor sit amet.</li>
+									<li>Lorem ipsum dolor sit amet.</li>
+									<li>Lorem ipsum dolor sit amet.</li>
+								</ul>
+							</li>
+							<li>Donec nulla non metus auctor fringilla.</li>
+							<li>Donec nulla non metus auctor fringilla.</li>
+						</ul>
+
+						<p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed..</p>
+
+						<p class="tags">
+		  			     	<span>Tagged in :</span>
+		  				  	<a href="#">orci</a><a href="#">lectus</a><a href="#">varius</a><a href="#">turpis</a>
+		  			   </p>
+
+					{% include "blog/abstract/author-profile.html" %}
+
+					</div> <!-- end entry-primary -->		  			   
+
+	  			  <!--pagenav group
+				=================================================-->
+				  
+
+				</article>
+   		
+
+			</div> <!-- end col-twelve -->
+			<div class="primary-content like">
+				<div >
+
+					Like this post:
+					<a href="{% url 'like' post.id %}"> <i class="fa fa-thumbs-up"></i></a>
+				</div>
+				<div >{{likes}} Likes</div>
+				
+			</div>
+
+   	</div> <!-- end row -->
+		<div class="comments-wrap">
+			<div id="comments" class="row">
+				<div class="col-full">
+
+               <h3>All Comments:</h3>
+
+               <!-- commentlist -->
+		{% include 'blog/abstract/comments.html' %}
+               
+
+
+               <!-- respond -->
+		{% include 'blog/abstract/create_comment.html' %}
+         	</div> <!-- end col-full -->
+         </div> <!-- end row comments -->
+		</div> <!-- end comments-wrap -->
+
+</section> <!-- end content -->
+
+
+   <!-- footer
+   ================================================== -->
+	{% include "blog/abstract/footer.html" %}
+
+
+{% endblock body %}

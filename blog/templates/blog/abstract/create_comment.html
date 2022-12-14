@@ -1,0 +1,30 @@
+{% load static %}
+<div class="respond">
+
+    <h3>Leave a Comment</h3>
+    
+   <form name="commentForm" method="POST" action={% url 'create-comment' post.id %}>
+      {% csrf_token %}  
+    
+    <fieldset>
+
+      <div class="form-field">
+                 <input name="name" type="text" id="name" class="full-width" placeholder="Your Name" value="">
+      </div>
+
+      <div class="form-field">
+                 <input name="email" type="text" id="email" class="full-width" placeholder="Your Email" value="">
+      </div>
+
+      
+
+      <div class="message form-field">
+         <textarea name="content" id="content" class="full-width" placeholder="Your Message" ></textarea>
+      </div>
+
+      <button type="submit" class="submit button-primary">Submit</button>
+
+          </fieldset>
+         </form> <!-- Form End -->
+
+</div> <!-- Respond End -->
