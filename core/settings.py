@@ -93,16 +93,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # @rifr@bb@nibcs
 # $BlogServer
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'BlogServer',
-       'USER': 'postgres',
-       'PASSWORD': '1924',
-       'HOST': 'localhost',
-       'PORT': '5432',
-   }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'BlogServer',
+#        'USER': 'postgres',
+#        'PASSWORD': '1924',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+# }
 
 
 DATABASES = {
