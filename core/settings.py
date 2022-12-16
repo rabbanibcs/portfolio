@@ -110,7 +110,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': '$BolgServer',
         'USER': 'rabbanibcs1924',
-        'PASSWORD': 'admin',
+        'PASSWORD': '@rifr@bb@nibcs',
         'HOST':'rabbanibcs1924.mysql.pythonanywhere-services.com',
         'PORT':'3306',
     }
