@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '$BolgServer',
+        'NAME': 'rabbanibcs1924$BolgServer',
         'USER': 'rabbanibcs1924',
         'PASSWORD': '@rifr@bb@nibcs',
         'HOST':'rabbanibcs1924.mysql.pythonanywhere-services.com',
