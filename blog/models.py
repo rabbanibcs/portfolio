@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 
 category=[("wordpress","Wordpress"),("html","HTML"),
@@ -12,7 +13,8 @@ category_=category
 class Post(models.Model):
     category=models.CharField(choices=category,default="wordpress",max_length=20)
     title=models.CharField(max_length=200)
-    content=models.TextField()
+    content=RichTextField()
+    # content=models.TextField()
     date_posted=models.DateField(default=timezone.now)
     author=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     image=models.ImageField(upload_to="post-images")

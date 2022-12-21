@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio.apps.PortfolioConfig',
     'blog.apps.BlogConfig',
+    'ecommerce.apps.EcommerceConfig',
     'user.apps.UserConfig',
-    
-    
+    "ckeditor",
+    'crispy_forms',
 
 ]
 
@@ -80,12 +81,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Database host address:rabbanibcs1924.mysql.pythonanywhere-services.com
 # Username:rabbanibcs1924
@@ -105,16 +106,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rabbanibcs1924$BolgServer',
-        'USER': 'rabbanibcs1924',
-        'PASSWORD': '@rifr@bb@nibcs',
-        'HOST':'rabbanibcs1924.mysql.pythonanywhere-services.com',
-        'PORT':'3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'rabbanibcs1924$BolgServer',
+#         'USER': 'rabbanibcs1924',
+#         'PASSWORD': '@rifr@bb@nibcs',
+#         'HOST':'rabbanibcs1924.mysql.pythonanywhere-services.com',
+#         'PORT':'3306',
+#     }
+# }
 
 
 # Password validation
@@ -152,7 +153,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics'),
+                    os.path.join(BASE_DIR, 'static_files')] # remove when deploy
+# STATIC_ROOT= [os.path.join(BASE_DIR, 'statics')]  for deployment
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -162,7 +165,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+CRISPY_TEMPLATE_PACK = 'Bootstrap4'
 
 
 

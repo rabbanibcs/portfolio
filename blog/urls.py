@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import *
+from .admin import blog_admin
 
 urlpatterns = [
+    path('admin/', blog_admin.urls),
     path('', PostListView.as_view(), name='post-index'),
     path('create/', create_post, name='post-create'),
     path('detail/<int:pk>/', PostDetailView.as_view(), name='post-detail'),

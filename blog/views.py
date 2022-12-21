@@ -5,6 +5,9 @@ from django.urls import reverse_lazy
 from .models import Post,Comment,category,Like
 from user.models import User
 from user.forms import ProfileForm
+from .forms import CraetePostForm
+from django.contrib.auth.decorators import login_required
+
 from django.views.generic import (ListView,
                                     DetailView,
                                     CreateView,
@@ -19,7 +22,7 @@ class PostListView(ListView):
     template_name = 'blog/abstract/index.html' # default: app/model_list.html
     context_object_name = 'posts'   #default: object_list
     ordering = ['-date_posted']
-    paginate_by=5
+    paginate_by=6
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
@@ -32,7 +35,7 @@ class CategoryView(ListView):
     # template_name = 'blog/abstract/index.html' 
     context_object_name = 'posts' 
     ordering = ['-date_posted']
-    paginate_by=3
+    paginate_by=5
 
     def get_queryset(self):
         return Post.objects.filter(category=self.kwargs.get('category')).order_by('-date_posted')
@@ -78,7 +81,7 @@ class PostDetailView(DetailView):
         print(self.request.user)
         return context
 
-
+@login_required
 def create_post(request):
     if request.method=="POST":
         post=Post(
@@ -89,11 +92,13 @@ def create_post(request):
             author=request.user)
         
         post.save()
-        print(request.FILES)
+        # print(request.FILES)
         return redirect('post-detail', post.id)
     else:
+        form=CraetePostForm()
         return render(request,'blog/post_create_form.html',{
-        "page_name":"create_post"
+        "page_name":"create_post",
+        "form":form
     })
 
     
@@ -148,7 +153,6 @@ def signout(request):
     logout(request)
     return redirect('signin')
 
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def like(request,pk):
@@ -156,6 +160,7 @@ def like(request,pk):
     like=Like.objects.get_or_create(post=post,user=request.user)
     return redirect('post-detail', pk)
 
+@login_required
 def liked_posts(request):
     likes=Like.objects.filter(user=request.user)
     print(likes)
@@ -190,6 +195,7 @@ def signup(request):
 
     return render(request,"signup.html")
 
+@login_required
 def edit_profile(request):
     if request.method=="POST":
         profile=ProfileForm(request.POST,request.FILES)

@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-twelve">
 
-            <form method="post" enctype="multipart/form-data">
+            {% comment %} <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                   
                   <fieldset>
@@ -65,6 +65,15 @@
                     <button type="submit" class="submit button-primary">Submit</button>
               
                   </fieldset>
+            </form>
+            <hr> {% endcomment %}
+            <form  method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{form.media}}
+              {{form.as_p}}
+              
+              <button type="submit" class="submit button-primary">Submit</button>
+
             </form>
         </div>
     </div>
