@@ -13,14 +13,30 @@
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
   
-  <link rel="apple-touch-icon" sizes="180x180" href={% static "assets/apple-icon-180x180.png" %}>
-  <link href={% static "assets/favicon.ico" %} rel="icon">
 
   <title>Porfolio</title>  
 
 <link href={% static 'main.d8e0d294.css' %} rel="stylesheet"></head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<title>Bootstrap Example</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
 
 <body class="">
+  {% if message %}
+    <div class="alert alert-primary" role="alert">
+      {{message}}
+    </div>
+    
+  {% endif %}
+
+
+ 
 
 <!-- Add your content of header -->
 <div class="background-color-layer" style="background-image: url({% static 'assets/images/img-01.jpg' %})"
@@ -28,7 +44,7 @@
 <main class="content-wrapper">
   <header class="white-text-container section-container">
     <div class="text-center">
-      <h1>I am Arif Rabbani</h1>
+      <h1>I am {{info.name}}</h1>
       <p>Web developer</p>
       <p>
         <a class="fa-icon fa-icon-2x" href="https://facebook.com/arif.rabbani.902/" title="">
@@ -63,8 +79,7 @@
               </div>
               <div class="col-md-8">
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>{{info.about}}</p>
 
               </div>
             </div>
@@ -77,43 +92,23 @@
             <div class="row">
               <div class="col-md-4">
                 <a href="{% url 'post-index' %}"><img src={% static 'assets/images/blog.png' %} class="img-responsive" alt=""></a>
-                <h3 class="h5">Blog App</h3>
-                <p>June 2020</p>
+                <h3 class="h5">Blog App (Django)</h3>
+                <a href="https://github.com/rabbanibcs/portfolio/tree/main/blog">Source Code</a>
               </div>
               <div class="col-md-4">
-                <img src={% static "assets/images/img-03.jpg" %} class="img-responsive" alt="">
-                <h3 class="h5">Portland</h3>
-                <p>March 2017</p>
+                <a href="{% url 'products' %}"><img src={% static "assets/images/shop.png" %} class="img-responsive" alt=""></a>
+                <h3 class="h5">Ecommerce App (Django)</h3>
+                <a href="https://github.com/rabbanibcs/portfolio/tree/main/ecommerce">Source Code</a>
               </div>
-              <div class="col-md-4">
+              {% comment %} <div class="col-md-4">
                 <img src={% static "assets/images/img-04.jpg"%} class="img-responsive" alt="">
                 <h3 class="h5">Denz for Nilon</h3>
                 <p>Jan 2017</p>
-              </div>
+              </div> {% endcomment %}
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-block">
-            <h2>Work</h2>
-            <div class="work-experience">
-              <small class="date">2017-2015</small>
-              <h3 class="h5 date-title">Web developer - <a href="http://en.orson.io" title="Create professionnal website">Orson.io</a></h3>
-              
-
-              <p>Leo vel orci porta non pulvinar neque laoreet suspendisse interdum. Vitae ultricies leo integer malesuada nunc. Imperdiet proin fermentum leo vel orci porta non pulvinar neque. Fermentum leo vel orci porta non. Posuere sollicitudin aliquam ultrices sagittis. Aliquam faucibus purus in massa tempor nec.</p>
-            </div>
-
-            <div class="work-experience">
-              <small class="date">2017-2015</small>
-              <h3 class="h5 date-title">Web developer - <a href="http://mashup-template.com" title="">Mashup Template</a></h3>
-              
-              <p>Fermentum leo vel orci porta non. Posuere sollicitudin aliquam ultrices sagittis. Aliquam faucibus purus in massa tempor nec.</p>
-            </div>
-          </div>
-        </div>
-        
 
         <div class="card">
           <div class="card-block">
@@ -175,15 +170,16 @@
         <div class="card">
           <div class="card-block">
             <h2>Contact</h2>
-            <form action="" class="reveal-content">
+            <form method="POST" class="reveal-content">
+              {% csrf_token %}
               <div class="form-group">
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input name="email" type="email" class="form-control" id="email" placeholder="Email" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" id="subject" placeholder="Subject">
+                <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" rows="5" placeholder="Enter your message"></textarea>
+                <textarea name="message" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
               </div>
               <div class="form-group">
                 <button type="submit" class=" btn btn-primary">Send message</button>
@@ -218,5 +214,5 @@
 </script>
 
 --><script type="text/javascript" src={% static "./main.bc58148c.js" %}></script></body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </html>

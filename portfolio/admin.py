@@ -10,3 +10,4 @@ class PortfolioAdmin(admin.AdminSite):
     
 portfolio_admin=PortfolioAdmin(name='portfolio-admin')
 portfolio_admin.register(PersonalInfo)
+portfolio_admin.register(Contact)
